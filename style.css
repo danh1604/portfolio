@@ -477,7 +477,6 @@ body {
     width: 100%;
     max-width: 400px;
     height: auto;
-    margin-top: 15px;
     margin-bottom: 20px;
     object-fit: contain;
 }
@@ -667,6 +666,164 @@ body {
     letter-spacing: 1px;
 }
 
+/* Achievements Content */
+.achievements-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.achievement-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.achievement-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.achievement-text p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.achievements-image-frame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Hobbies Content */
+.hobbies-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+}
+
+.hobby-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 14px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.hobby-item:hover {
+    transform: translateX(5px);
+}
+
+.hobby-item i {
+    font-size: 22px;
+    color: #1a1a1a;
+    width: 48px;
+    height: 48px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.hobby-item h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+}
+
+.hobby-item p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Hobbies Gallery */
+.hobbies-gallery {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.hobbies-gallery .gallery-main {
+    flex: 1;
+    min-height: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+}
+
+.hobbies-gallery .gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #fff;
+}
+
+.hobbies-gallery .gallery-row {
+    display: flex;
+    gap: 12px;
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.hobbies-gallery .gallery-item {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+}
+
+.hobbies-gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #fff;
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
     .book {
@@ -737,12 +894,54 @@ body {
         font-size: 11px;
     }
 
+    .achievement-item {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .achievement-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .achievement-text h4 {
+        font-size: 13px;
+    }
+
+    .achievement-text p {
+        font-size: 11px;
+    }
+
+    .hobby-item {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .hobby-item i {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .hobby-item h4 {
+        font-size: 12px;
+    }
+
+    .hobby-item p {
+        font-size: 10px;
+    }
+
     .gallery-row {
         height: 140px;
     }
 
     .gallery-main {
         min-height: 200px;
+    }
+
+    .hobbies-gallery .gallery-row {
+        height: 140px;
     }
 }
 
