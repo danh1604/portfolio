@@ -473,6 +473,13 @@ body {
     margin-bottom: 20px;
 }
 
+.edu-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 16px;
+    object-fit: contain;
+}
+
 .edu-content h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
