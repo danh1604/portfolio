@@ -474,7 +474,8 @@ body {
 }
 
 .edu-logo {
-    width: 200px;
+    width: 100%;
+    max-width: 400px;
     height: auto;
     margin-top: 30px;
     margin-bottom: 20px;
