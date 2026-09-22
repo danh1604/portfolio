@@ -474,9 +474,10 @@ body {
 }
 
 .edu-logo {
-    width: 100px;
+    width: 200px;
     height: auto;
-    margin-bottom: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     object-fit: contain;
 }
 
