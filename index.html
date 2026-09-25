@@ -32,8 +32,9 @@
                         <p>Hồ Chí Minh</p>
                     </div>
                     <div class="cover-actions">
-                        <button class="btn-primary" data-goto="4"><i class="fas fa-folder-open"></i> Xem dự án</button>
-                        <button class="btn-ghost" data-goto="7"><i class="fas fa-paper-plane"></i> Liên hệ</button>
+                        <button class="btn-primary" id="cvBtn" type="button">
+                            <i class="fas fa-download"></i> Tải CV
+                        </button>
                     </div>
                 </div>
             </div>
@@ -124,44 +125,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- Slide 4: Achievements -->
-        <section class="spread content-spread reveal" id="achievements" data-title="Thành tựu">
-            <div class="left-page">
-                <div class="page-content">
-                    <h2 class="page-title">THÀNH TỰU</h2>
-                    <div class="achievements-content">
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="achievement-text">
-                                <h4>Giải khuyến khích</h4>
-                                <p>Cuộc thi lập trình sinh viên cấp trường</p>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <div class="achievement-text">
-                                <h4>2+ Dự án thực tế</h4>
-                                <p>Đã deploy &amp; vận hành: Shape Nail Lounge, PickYourWay</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-page">
-                <div class="page-content">
-                    <div class="achievements-image-frame">
-                        <div class="page-img">
-                            <img src="images/avatar.svg" alt="Thành tự bản thân">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Slide 5: Projects 1 -->
         <section class="spread content-spread reveal" id="project-1" data-title="Dự án 1">
@@ -186,9 +150,14 @@
                             <li>Tự triển khai trên Vercel, cấu hình tên miền riêng.</li>
                             <li>Khó khăn đã giải quyết: Xử lí các vấn đề liên quan đến nhắc hẹn khi khách hàng gần đến thời gian hẹn.</li>
                         </ul>
-                        <a href="https://shapenailloungeclt.com/" target="_blank" class="demo-link">
-                            <i class="fas fa-external-link-alt"></i> Xem Demo
-                        </a>
+                        <div class="project-links">
+                            <a href="https://shapenailloungeclt.com/" target="_blank" class="demo-link">
+                                <i class="fas fa-external-link-alt"></i> Xem Demo
+                            </a>
+                            <a href="https://github.com/danh1604" target="_blank" class="demo-link ghost">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -236,9 +205,14 @@
                             <li>Xây dựng các tính năng quản trị để quản lý dịch vụ và bình luận.</li>
                             <li>Triển khai ứng dụng trên nền tảng Vercel.</li>
                         </ul>
-                        <a href="https://pickyourway.vercel.app/" target="_blank" class="demo-link">
-                            <i class="fas fa-external-link-alt"></i> Xem Demo
-                        </a>
+                        <div class="project-links">
+                            <a href="https://pickyourway.vercel.app/" target="_blank" class="demo-link">
+                                <i class="fas fa-external-link-alt"></i> Xem Demo
+                            </a>
+                            <a href="https://github.com/tabii12/DATN" target="_blank" class="demo-link ghost">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

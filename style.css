@@ -651,6 +651,25 @@ img {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
 }
 
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.demo-link.ghost {
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid #e2e2e2;
+    box-shadow: none;
+}
+
+.demo-link.ghost:hover {
+    background: #fafafa;
+    transform: translateY(-2px);
+}
+
 /* Contact */
 .contact-item {
     display: flex;

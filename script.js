@@ -225,6 +225,18 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => goTo(parseInt(btn.dataset.goto, 10)));
     });
 
+    /* ============ Nút Tải CV (trang bìa) ============ */
+    const cvBtn = document.getElementById('cvBtn');
+    if (cvBtn) {
+        cvBtn.addEventListener('click', async () => {
+            try {
+                const res = await fetch('cv.pdf', { method: 'HEAD' });
+                if (res.ok) { window.open('cv.pdf', '_blank'); return; }
+            } catch (_) { /* không có file cv.pdf -> in trang thành PDF */ }
+            window.print();
+        });
+    }
+
     /* ============ Chuột / trackpad: mỗi cú cuộn = lật 1 trang ============ */
     let wheelAcc = 0;
     let lastWheelTime = 0;
