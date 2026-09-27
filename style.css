@@ -13,12 +13,17 @@
     --line: #ececec;
     --paper: #ffffff;
 
+    /* Màu nhấn duy nhất của toàn bộ portfolio */
+    --accent: #ff4400bb;
+    --accent-dark: #ff4400bb;
+    --accent-soft: #fff1eb;
+
     /* Tỉ lệ trang = rộng / cao. 0.707 = A4, 0.75 = 3:4. Tăng số để trang "béo" hơn */
     --ratio: 0.72;
 
     /* Khoảng trống quanh cuốn tạp chí */
-    --top: 36px;
-    --bottom: 78px;   /* chừa chỗ cho thanh dots */
+    --top: 66px;      /* chừa chỗ cho thanh điều hướng phía trên */
+    --bottom: 64px;   /* chừa chỗ cho thanh dots */
     --side: 88px;     /* chừa chỗ cho nút prev/next */
 
     --vh: 100vh;
@@ -62,6 +67,86 @@ img {
     display: block;
 }
 
+/* ============ THANH ĐIỀU HƯỞNG ============ */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 clamp(14px, 3vw, 40px);
+    background: rgba(255, 255, 255, 0.88);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    z-index: 1500;
+}
+
+.topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2.4vw, 30px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    min-width: 0;
+}
+
+.topbar-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.topbar-nav button {
+    position: relative;
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    padding: 8px 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.25s ease;
+}
+
+.topbar-nav button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.28s ease;
+}
+
+.topbar-nav button:hover,
+.topbar-nav button.active {
+    color: var(--accent);
+}
+
+.topbar-nav button.active {
+    font-weight: 500;
+}
+
+.topbar-nav button:hover::after,
+.topbar-nav button.active::after {
+    transform: scaleX(1);
+}
+
+.topbar-cv {
+    flex-shrink: 0;
+    padding: 9px 18px;
+    font-size: 12.5px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+
 /* Scroll progress */
 .scroll-progress {
     position: fixed;
@@ -69,9 +154,13 @@ img {
     left: 0;
     height: 3px;
     width: 0%;
-    background: linear-gradient(90deg, #1a1a1a, #6d6d6d);
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
     z-index: 2000;
     transition: width 0.12s linear;
+}
+
+::selection {
+    background: rgba(29, 78, 216, 0.18);
 }
 
 /* ============ SCROLLER (cuộn ngang liên tục như tạp chí) ============ */
@@ -219,7 +308,7 @@ img {
 .cover-label {
     font-size: 11px;
     letter-spacing: 5px;
-    color: var(--soft);
+    color: var(--accent);
     margin-bottom: 20px;
     font-weight: 500;
 }
@@ -239,8 +328,44 @@ img {
     letter-spacing: 3px;
     color: var(--faint);
     line-height: 1.7;
-    margin-bottom: 26px;
+    margin-bottom: 20px;
     text-transform: uppercase;
+}
+
+/* Dòng công nghệ + các điểm nổi bật trên trang bìa */
+.cover-stack {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    padding: 10px 0;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 18px;
+}
+
+.cover-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 6px;
+}
+
+.cover-points li {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 22px;
+    position: relative;
+}
+
+.cover-points li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .cover-info p {
@@ -253,8 +378,8 @@ img {
 .cover-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 30px;
+    gap: 10px;
+    margin-top: 26px;
 }
 
 .btn-primary,
@@ -268,14 +393,15 @@ img {
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
+    text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .btn-primary {
-    background: var(--ink);
+    background: var(--accent);
     color: #fff;
     border: none;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 10px 24px rgba(29, 78, 216, 0.28);
 }
 
 .btn-ghost {
@@ -353,14 +479,29 @@ img {
     font-size: 19px;
     font-weight: 600;
     letter-spacing: 3px;
-    margin-bottom: 24px;
-    padding-bottom: 13px;
-    border-bottom: 2px solid var(--line);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
     text-transform: uppercase;
+}
+
+/* Từ khóa được tô màu nhấn + in đậm */
+.kw {
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .content-text {
     flex: 1;
+}
+
+/* Dòng dẫn ngắn ngay dưới tiêu đề trang */
+.page-lead {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: -10px;
+    margin-bottom: 6px;
 }
 
 .content-text .intro {
@@ -389,6 +530,7 @@ img {
     font-family: 'Playfair Display', serif;
     font-size: 2.1rem;
     font-weight: 700;
+    color: var(--accent);
 }
 
 .stat-label {
@@ -491,7 +633,7 @@ img {
 .skill-item {
     padding: 15px 18px;
     background: #f8f8f8;
-    border-left: 3px solid var(--ink);
+    border-left: 3px solid var(--accent);
     border-radius: 0 10px 10px 0;
     transition: transform 0.3s ease, background 0.3s ease;
 }
@@ -508,6 +650,23 @@ img {
     font-size: 13px;
     color: var(--muted);
     line-height: 1.6;
+}
+
+/* Dòng công nghệ chính trong thẻ kỹ năng */
+.skill-item > p:not(.skill-note) {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.skill-item p.skill-note {
+    font-size: 11.5px;
+    color: var(--soft);
+    line-height: 1.55;
+    margin-top: 5px;
+}
+
+.skills-content {
+    gap: 15px;
 }
 
 /* Education */
@@ -528,14 +687,14 @@ img {
     width: 66px;
     height: 66px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     font-size: 26px;
     margin-bottom: 16px;
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 26px rgba(29, 78, 216, 0.3);
 }
 
 .edu-content h3 {
@@ -559,66 +718,69 @@ img {
 
 .edu-status {
     font-size: 12px;
-    color: #1e8449;
-    font-weight: 500;
+    color: var(--accent);
+    font-weight: 600;
 }
 
 /* Project */
 .project-content {
     flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
+    /* căn giữa khi còn chỗ; "safe center" lùi về start khi tràn để không cắt đầu chữ */
     justify-content: center;
+    justify-content: safe center;
 }
 
 .project-content h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
     line-height: 1.3;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .project-type {
     font-size: 12px;
     color: var(--faint);
     line-height: 1.5;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .project-tags span {
-    padding: 5px 13px;
-    background: #f0f0f0;
+    padding: 4px 11px;
+    background: var(--accent-soft);
     border-radius: 16px;
     font-size: 11px;
-    color: #5c5c5c;
+    color: var(--accent-dark);
 }
 
 .project-list {
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 
 .project-list li {
     font-size: 12.5px;
     color: var(--muted);
-    padding: 4px 0 4px 16px;
+    padding: 3px 0 3px 16px;
     position: relative;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .project-list li::before {
     content: '▸';
     position: absolute;
     left: 0;
-    color: var(--ink);
+    color: var(--accent);
 }
 
 .project-list li.project-subtitle {
@@ -638,8 +800,8 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 12px 22px;
-    background: var(--ink);
+    padding: 10px 20px;
+    background: var(--accent);
     color: #fff;
     text-decoration: none;
     border-radius: 26px;
@@ -648,7 +810,7 @@ img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     width: fit-content;
     flex-shrink: 0;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 10px 24px rgba(255, 68, 0, 0.25);
 }
 
 .project-links {
@@ -665,12 +827,55 @@ img {
     box-shadow: none;
 }
 
-.demo-link.ghost:hover {
-    background: #fafafa;
-    transform: translateY(-2px);
-}
+    .demo-link.ghost:hover {
+        background: var(--accent-soft);
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+    }
 
 /* Contact */
+.contact-content {
+    gap: 13px;
+}
+
+.hobby-strip {
+    margin-top: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.hobby-strip-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 11px;
+    font-weight: 500;
+}
+
+.hobby-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hobby-mini span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border: 1px solid #dbe3ff;
+    padding: 7px 13px;
+    border-radius: 20px;
+}
+
+.hobby-mini i {
+    font-size: 12px;
+    color: var(--accent);
+}
+
 .contact-item {
     display: flex;
     align-items: center;
@@ -856,7 +1061,7 @@ img {
 /* ============ DOTS ============ */
 .dots {
     position: fixed;
-    bottom: 24px;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -883,7 +1088,7 @@ img {
 }
 
 .dot.active {
-    background: var(--ink);
+    background: var(--accent);
     width: 26px;
     border-radius: 6px;
 }
@@ -892,22 +1097,26 @@ img {
 @media (hover: hover) {
     .btn-primary:hover {
         transform: translateY(-3px);
-        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 16px 30px rgba(29, 78, 216, 0.34);
+        background: var(--accent-dark);
     }
 
     .btn-ghost:hover {
         transform: translateY(-3px);
         background: #fafafa;
+        border-color: var(--accent);
+        color: var(--accent);
     }
 
     .skill-item:hover {
         transform: translateX(6px);
-        background: #f2f2f2;
+        background: var(--accent-soft);
     }
 
     .demo-link:hover {
         transform: translateY(-3px);
-        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 16px 30px rgba(29, 78, 216, 0.32);
+        background: var(--accent-dark);
     }
 
     .contact-item:hover,
@@ -922,7 +1131,12 @@ img {
     }
 
     .contact-item a:hover {
-        color: var(--ink);
+        color: var(--accent);
+    }
+
+    .contact-item:hover i {
+        background: var(--accent);
+        color: #fff;
     }
 
     .nav-btn:not(:disabled):hover {
@@ -942,9 +1156,11 @@ img {
 .btn-ghost:focus-visible,
 .nav-btn:focus-visible,
 .dot:focus-visible,
+.topbar-nav button:focus-visible,
+.topbar-cv:focus-visible,
 .demo-link:focus-visible,
 .contact-item a:focus-visible {
-    outline: 2px solid var(--ink);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
@@ -1128,18 +1344,38 @@ img {
 /* Laptop màn hình thấp */
 @media (max-height: 760px) and (min-width: 901px) {
     :root {
-        --top: 22px;
-        --bottom: 64px;
+        --top: 56px;
+        --bottom: 56px;
+    }
+
+    .topbar {
+        height: 46px;
+    }
+
+    .topbar-nav button {
+        font-size: 12px;
+        padding: 5px 1px;
+    }
+
+    .topbar-cv {
+        padding: 6px 14px;
+        font-size: 11.5px;
     }
 
     .dots {
-        bottom: 16px;
+        bottom: 10px;
+        padding: 8px 14px;
     }
 
     .page-title {
         font-size: 17px;
-        margin-bottom: 16px;
-        padding-bottom: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+
+    /* Bỏ dòng dẫn để chừa chỗ cho nội dung chính */
+    .page-lead {
+        display: none;
     }
 
     .content-text p {
@@ -1149,8 +1385,33 @@ img {
     }
 
     .project-list li {
+        font-size: 11.5px;
+        line-height: 1.45;
+        padding: 2px 0 2px 14px;
+    }
+
+    .project-content h3 {
+        font-size: 1.05rem;
+        margin-bottom: 3px;
+    }
+
+    .project-type {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .project-tags {
+        margin-bottom: 8px;
+        gap: 5px;
+    }
+
+    .project-list {
+        margin-bottom: 10px;
+    }
+
+    .demo-link {
+        padding: 8px 18px;
         font-size: 12px;
-        padding: 3px 0 3px 16px;
     }
 
     .skills-content,
@@ -1158,6 +1419,44 @@ img {
     .hobbies-content,
     .contact-content {
         gap: 12px;
+    }
+
+    .skill-item {
+        padding: 12px 16px;
+    }
+
+    .skill-item p {
+        font-size: 12.5px;
+    }
+
+    .skill-item p.skill-note {
+        font-size: 11px;
+        margin-top: 4px;
+    }
+
+    .cover-stack {
+        padding: 8px 0;
+        margin-bottom: 14px;
+    }
+
+    .cover-label {
+        margin-bottom: 14px;
+    }
+
+    .cover-name {
+        margin-bottom: 12px;
+    }
+
+    .cover-role {
+        margin-bottom: 14px;
+    }
+
+    .cover-points {
+        gap: 7px;
+    }
+
+    .cover-actions {
+        margin-top: 20px;
     }
 
     .scroll-hint {
@@ -1172,11 +1471,34 @@ img {
         background-attachment: scroll;
     }
 
+    .topbar {
+        height: 52px;
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .topbar-nav {
+        gap: 15px;
+    }
+
+    .topbar-nav button {
+        font-size: 12px;
+        letter-spacing: 0.3px;
+        padding: 6px 1px;
+    }
+
+    .topbar-cv {
+        padding: 7px 14px;
+        font-size: 12px;
+        gap: 6px;
+    }
+
     .scroller {
         display: block;
         height: auto;
         overflow: visible;
         touch-action: auto;
+        padding-top: 52px;
     }
 
     .spread {
@@ -1189,6 +1511,7 @@ img {
         gap: 14px;
         padding: 26px 16px 40px;
         filter: none;
+        scroll-margin-top: 52px;
     }
 
     .spread:last-child {
@@ -1314,6 +1637,7 @@ img {
     }
 
     .scroll-progress,
+    .topbar,
     .nav-btn,
     .dots,
     .scroll-hint,

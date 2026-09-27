@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Võ Thành Danh - Portfolio</title>
+    <meta name="description" content="Portfolio của Võ Thành Danh — Junior Front-end Developer: React, Next.js, TypeScript, 2 dự án thực tế đang vận hành.">
+    <meta name="theme-color" content="#ff4400">
+
+    <!-- Open Graph: hiển thị ảnh + tên khi chia sẻ link (Zalo, email, Facebook...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vo-thanh-danh-portfolio.vercel.app/">
+    <meta property="og:site_name" content="Võ Thành Danh Portfolio">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:title" content="Võ Thành Danh | Junior Front-end Developer">
+    <meta property="og:description" content="React · Next.js · TypeScript. 2 dự án thực tế đang vận hành.">
+    <meta property="og:image" content="https://vo-thanh-danh-portfolio.vercel.app/images/og-cover.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Võ Thành Danh — Junior Front-end Developer">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Võ Thành Danh | Junior Front-end Developer">
+    <meta name="twitter:description" content="React · Next.js · TypeScript. 2 dự án thực tế đang vận hành.">
+    <meta name="twitter:image" content="https://vo-thanh-danh-portfolio.vercel.app/images/og-cover.png">
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <header class="topbar" id="topbar">
+        <nav class="topbar-nav" aria-label="Điều hướng chính">
+            <button type="button" data-target="project-1,project-2">Dự án</button>
+            <button type="button" data-target="skills">Kỹ năng</button>
+            <button type="button" data-target="about">Giới thiệu</button>
+            <button type="button" data-target="contact">Liên hệ</button>
+        </nav>
+        <button class="btn-primary topbar-cv js-cv" type="button">
+            <i class="fas fa-download"></i> Tải CV
+        </button>
+    </header>
+
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <button class="nav-btn prev-btn" id="prevBtn" aria-label="Trang trước">
@@ -20,21 +52,29 @@
 
     <main class="scroller" id="scroller">
 
-        <!-- Slide 1: Cover -->
-        <section class="spread cover-spread reveal" id="hero" data-title="Trang chủ">
+        <!-- Slide 1: Trang bìa (kèm tóm tắt) -->
+        <section class="spread cover-spread reveal" id="hero" data-title="Trang bìa">
             <div class="left-page cover-left">
                 <div class="page-content">
                     <p class="cover-label">PORTFOLIO</p>
                     <h1 class="cover-name">VÕ THÀNH<br>DANH</h1>
                     <p class="cover-role">JUNIOR FRONT-END<br>DEVELOPER</p>
-                    <div class="cover-info">
-                        <p>danhtthuy24@gmail.com</p>
-                        <p>Hồ Chí Minh</p>
-                    </div>
+                    <p class="cover-stack">React · Next.js · TypeScript</p>
+                    <ul class="cover-points">
+                        <li><strong class="kw">1 website</strong> cho khách hàng thật, đang vận hành</li>
+                        <li>Đồ án tốt nghiệp <strong class="kw">nền tảng đặt tour</strong> (Next.js)</li>
+                        <li><strong class="kw">Tốt nghiệp FPT Polytechnic 2026</strong></li>
+                    </ul>
                     <div class="cover-actions">
-                        <button class="btn-primary" id="cvBtn" type="button">
+                        <button class="btn-primary" type="button" data-goto="3">
+                            <i class="fas fa-arrow-right"></i> Xem dự án
+                        </button>
+                        <button class="btn-primary js-cv" id="cvBtn" type="button">
                             <i class="fas fa-download"></i> Tải CV
                         </button>
+                        <a class="btn-ghost" href="https://github.com/danh1604" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
                     </div>
                 </div>
             </div>
@@ -45,21 +85,19 @@
                             <img src="images/MY.png" alt="Ảnh đại diện">
                         </div>
                     </div>
-                    <p class="cover-year">EST. 2026</p>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 2: About -->
-        <section class="spread content-spread reveal" id="about" data-title="Giới thiệu">
+        <section class="spread content-spread reveal" id="about" data-title="Profile & Học vấn">
             <div class="left-page">
                 <div class="page-content">
                     <h2 class="page-title">PROFILE</h2>
                     <div class="content-text">
                         <p class="intro">Xin chào, tôi là <strong>Võ Thành Danh</strong></p>
-                        <p>Tôi vừa tốt nghiệp chuyên ngành Lập trình Web tại FPT Polytechnic và định hướng phát triển sự nghiệp trong lĩnh vực Front-end Development. Tôi có khả năng xây dựng giao diện web responsive bằng HTML, CSS, JavaScript, React và Next.js.</p>
-                        <p>Trong quá trình học tập và thực hiện dự án, tôi đã xây dựng các website thực tế như website đặt lịch cho một tiệm nail (dự án freelance, đang hoạt động) và nền tảng đặt tour du lịch (đồ án tốt nghiệp nhóm).</p>
-                        <p>Hiện tại, tôi đang tìm cơ hội ở vị trí Fresher/Intern Front-end để được làm việc trên sản phẩm thật, học hỏi từ anh chị đi trước và phát triển kỹ năng một cách bài bản.</p>
+                        <p>Tôi vừa tốt nghiệp chuyên ngành <strong class="kw">Lập trình Web</strong> tại <strong class="kw">FPT Polytechnic</strong> và định hướng phát triển sự nghiệp trong lĩnh vực Front-end Development. Tôi có khả năng xây dựng <strong class="kw">giao diện web responsive</strong> bằng HTML, CSS, JavaScript, React và Next.js.</p>
+                        <p>Trong quá trình học tập và thực hiện dự án, tôi đã xây dựng các website thực tế như <strong class="kw">website đặt lịch cho một tiệm nail</strong> (dự án freelance, đang hoạt động) và <strong class="kw">nền tảng đặt tour du lịch</strong> (đồ án tốt nghiệp nhóm).</p>
+                        <p>Hiện tại, tôi đang tìm cơ hội ở vị trí <strong class="kw">Fresher/Intern Front-end</strong> để được làm việc trên sản phẩm thật, học hỏi từ anh chị đi trước và phát triển kỹ năng một cách bài bản.</p>
                     </div>
                     <div class="stats-row">
                         <div class="stat">
@@ -69,42 +107,6 @@
                         <div class="stat">
                             <span class="stat-num">3+</span>
                             <span class="stat-label">Năm học</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-page">
-                <div class="page-content">
-                    <div class="image-frame">
-                        <div class="page-img">
-                            <img src="images/duan.jpg" alt="Ảnh Profile">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 3: Skills + Education -->
-        <section class="spread content-spread reveal" id="skills" data-title="Kỹ năng">
-            <div class="left-page">
-                <div class="page-content">
-                    <h2 class="page-title">KỸ NĂNG</h2>
-                    <div class="skills-content">
-                        <div class="skill-item">
-                            <h4>FRONT-END</h4>
-                            <p>HTML5 • CSS3 • JavaScript • React.js • TypeScript</p>
-                        </div>
-                        <div class="skill-item">
-                            <h4>BACK-END</h4>
-                            <p>Node.js • MongoDB • MySQL</p>
-                        </div>
-                        <div class="skill-item">
-                            <h4>TOOLS</h4>
-                            <p>Git / GitHub • VS Code • Vercel</p>
-                        </div>
-                        <div class="skill-item">
-                            <h4>MARKETING & CONTENT</h4>
-                            <p>Hiểu biết cơ bản về SEO on-page</p>
                         </div>
                     </div>
                 </div>
@@ -125,16 +127,63 @@
                 </div>
             </div>
         </section>
-        
 
-        <!-- Slide 5: Projects 1 -->
+        <section class="spread content-spread reveal" id="skills" data-title="Kỹ năng">
+            <div class="left-page">
+                <div class="page-content">
+                    <h2 class="page-title">KỸ NĂNG</h2>
+                    <p class="page-lead">Nền tảng tôi dùng để xây dựng <strong class="kw">giao diện, API</strong> và triển khai sản phẩm.</p>
+                    <div class="skills-content">
+                        <div class="skill-item">
+                            <h4>FRONT-END</h4>
+                            <p>HTML5 • CSS3 • JavaScript • React.js • TypeScript</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>BACK-END</h4>
+                            <p>Node.js • MongoDB • MySQL</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>TOOLS</h4>
+                            <p>Git / GitHub • VS Code • Vercel</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>MARKETING &amp; CONTENT</h4>
+                            <p>Hiểu biết cơ bản về SEO on-page</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-page">
+                <div class="page-content">
+                    <h2 class="page-title">KỸ NĂNG THEO DỰ ÁN</h2>
+                    <p class="page-lead">Những công nghệ tôi đã <strong class="kw">áp dụng trực tiếp</strong> vào sản phẩm thực tế.</p>
+                    <div class="skills-content">
+                        <div class="skill-item">
+                            <h4>SHAPE NAIL LOUNGE · FREELANCE</h4>
+                            <p>React.js • Vite • JavaScript • Brevo API • Vercel</p>
+                            <p class="skill-note">Form đặt lịch có kiểm tra dữ liệu đầu vào.</p>
+                            <p class="skill-note">Gửi email xác nhận cho khách và báo lịch cho tiệm.</p>
+                            <p class="skill-note">Tự deploy trên Vercel, tối ưu trải nghiệm mobile.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>PICKYOURWAY · ĐỒ ÁN TỐT NGHIỆP</h4>
+                            <p>Next.js • TypeScript • REST API • MongoDB • CSS</p>
+                            <p class="skill-note">Trang chi tiết tour và blog động theo App Router.</p>
+                            <p class="skill-note">Tích hợp REST API cho tour, bài viết và bình luận.</p>
+                            <p class="skill-note">Xây dựng trang quản trị dịch vụ, bình luận.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="spread content-spread reveal" id="project-1" data-title="Dự án 1">
             <div class="left-page">
                 <div class="page-content">
                     <h2 class="page-title">DỰ ÁN 1</h2>
                     <div class="project-content">
                         <h3>Shape Nail Lounge | Website đặt lịch trực tuyến</h3>
-                        <p class="project-type">Dự án freelance cho khách hàng thực tế · Làm một mình · Tháng 8 2026</p>
+                        <p class="project-type">Dự án freelance cho khách hàng thực tế · Làm một mình · 08/2026</p>
                         <div class="project-tags">
                             <span>React.js</span>
                             <span>Vite</span>
@@ -143,12 +192,12 @@
                             <span>Vercel</span>
                         </div>
                         <ul class="project-list">
-                            <li>Website giới thiệu dịch vụ và đặt lịch hẹn online cho một tiệm nail, đang vận hành trên tên miền riêng.</li>
-                            <li>Xây dựng form đặt lịch hoàn chỉnh: thông tin khách hàng, chọn dịch vụ, chọn ngày giờ, có kiểm tra dữ liệu đầu vào.</li>
-                            <li>Tích hợp Brevo API để tự động gửi email xác nhận cho khách và thông báo lịch mới cho tiệm.</li>
-                            <li>Thiết kế responsive, tối ưu trải nghiệm trên mobile (nơi phần lớn khách đặt lịch).</li>
-                            <li>Tự triển khai trên Vercel, cấu hình tên miền riêng.</li>
-                            <li>Khó khăn đã giải quyết: Xử lí các vấn đề liên quan đến nhắc hẹn khi khách hàng gần đến thời gian hẹn.</li>
+                            <li>Website giới thiệu dịch vụ và <strong class="kw">đặt lịch hẹn online</strong> cho một tiệm nail, đang vận hành trên tên miền riêng.</li>
+                            <li>Xây dựng <strong class="kw">form đặt lịch hoàn chỉnh</strong>: thông tin khách hàng, chọn dịch vụ, chọn ngày giờ, có kiểm tra dữ liệu đầu vào.</li>
+                            <li>Tích hợp <strong class="kw">Brevo API</strong> để tự động gửi email xác nhận cho khách và thông báo lịch mới cho tiệm.</li>
+                            <li>Thiết kế <strong class="kw">responsive</strong>, tối ưu trải nghiệm trên mobile (nơi phần lớn khách đặt lịch).</li>
+                            <li>Tự triển khai trên <strong class="kw">Vercel</strong>, cấu hình tên miền riêng.</li>
+                            <li>Khó khăn đã giải quyết: Xử lí các vấn đề liên quan đến <strong class="kw">nhắc hẹn</strong> khi khách hàng gần đến thời gian hẹn.</li>
                         </ul>
                         <div class="project-links">
                             <a href="https://shapenailloungeclt.com/" target="_blank" class="demo-link">
@@ -180,14 +229,13 @@
             </div>
         </section>
 
-        <!-- Slide 6: Projects 2 -->
         <section class="spread content-spread reveal" id="project-2" data-title="Dự án 2">
             <div class="left-page">
                 <div class="page-content">
                     <h2 class="page-title">DỰ ÁN 2</h2>
                     <div class="project-content">
                         <h3>PickYourWay | Nền tảng đặt tour du lịch</h3>
-                        <p class="project-type">Đồ án tốt nghiệp · Nhóm [6] người · Vai trò: [Front-end Developer] · [05/2026]</p>
+                        <p class="project-type">Đồ án tốt nghiệp · Nhóm 6 người · Vai trò: Front-end Developer · 05/2026</p>
                         <div class="project-tags">
                             <span>Next.js</span>
                             <span>TypeScript</span>
@@ -197,13 +245,13 @@
                             <span>Vercel</span>
                         </div>
                         <ul class="project-list">
-                            <li>Nền tảng giúp người dùng tìm kiếm, xem chi tiết và đặt tour du lịch, kèm blog và trang quản trị.</li>
+                            <li>Nền tảng giúp người dùng tìm kiếm, xem chi tiết và <strong class="kw">đặt tour du lịch</strong>, kèm blog và trang quản trị.</li>
                             <li class="project-subtitle">Vai trò của tôi:</li>
-                            <li>Xây dựng các trang chi tiết tour và bài viết (blog) động sử dụng Next.js App Router.</li>
-                            <li>Tích hợp REST API cho các dữ liệu về tour, bài viết, dịch vụ và bình luận.</li>
-                            <li>Triển khai giao diện người dùng (UI) có khả năng thích ứng (responsive) bằng CSS.</li>
-                            <li>Xây dựng các tính năng quản trị để quản lý dịch vụ và bình luận.</li>
-                            <li>Triển khai ứng dụng trên nền tảng Vercel.</li>
+                            <li>Xây dựng các trang chi tiết tour và bài viết (blog) động sử dụng <strong class="kw">Next.js App Router</strong>.</li>
+                            <li>Tích hợp <strong class="kw">REST API</strong> cho các dữ liệu về tour, bài viết, dịch vụ và bình luận.</li>
+                            <li>Triển khai giao diện người dùng (UI) có khả năng thích ứng (<strong class="kw">responsive</strong>) bằng CSS.</li>
+                            <li>Xây dựng các tính năng <strong class="kw">quản trị</strong> để quản lý dịch vụ và bình luận.</li>
+                            <li>Triển khai ứng dụng trên nền tảng <strong class="kw">Vercel</strong>.</li>
                         </ul>
                         <div class="project-links">
                             <a href="https://pickyourway.vercel.app/" target="_blank" class="demo-link">
@@ -235,56 +283,6 @@
             </div>
         </section>
 
-        <!-- Slide 7: Hobbies -->
-        <section class="spread content-spread reveal" id="hobbies" data-title="Sở thích">
-            <div class="left-page">
-                <div class="page-content">
-                    <h2 class="page-title">SỞ THÍCH</h2>
-                    <div class="hobbies-content">
-                        <div class="hobby-item">
-                            <i class="fas fa-code"></i>
-                            <div>
-                                <h4>Lập trình &amp; Side Project</h4>
-                                <p>Xây dựng các dự án cá nhân, học công nghệ mới</p>
-                            </div>
-                        </div>
-                        <div class="hobby-item">
-                            <i class="fas fa-soccer-ball"></i>
-                            <div>
-                                <h4>Đá bóng</h4>
-                                <p>Thích chơi bóng đá, theo dõi các trận đấu</p>
-                            </div>
-                        </div>
-                        <div class="hobby-item">
-                            <i class="fas fa-music"></i>
-                            <div>
-                                <h4>Âm nhạc &amp; Giải trí</h4>
-                                <p>Nghe nhạc, xem phim, thư giãn sau giờ làm</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-page">
-                <div class="page-content">
-                    <div class="hobbies-gallery">
-                        <div class="gallery-main">
-                            <img src="images/pc.jpg" alt="Sở thích - Coding">
-                        </div>
-                        <div class="gallery-row">
-                            <div class="gallery-item">
-                                <img src="images/1111.jpg" alt="Sở thích - Du lịch">
-                            </div>
-                            <div class="gallery-item">
-                                <img src="images/lop.jpg" alt="Sở thích - Thiết kế">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 8: Contact -->
         <section class="spread content-spread reveal" id="contact" data-title="Liên hệ">
             <div class="left-page">
                 <div class="page-content">
@@ -312,6 +310,15 @@
                                 <a href="https://github.com/tabii12/DATN" target="_blank">github.com/tabii12/DATN</a>
                             </div>
                         </div>
+
+                        <div class="hobby-strip">
+                            <p class="hobby-strip-title">SỞ THÍCH</p>
+                            <div class="hobby-mini">
+                                <span><i class="fas fa-code"></i> Side project</span>
+                                <span><i class="fas fa-soccer-ball"></i> Đá bóng</span>
+                                <span><i class="fas fa-music"></i> Âm nhạc</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -319,7 +326,7 @@
                 <div class="page-content">
                     <div class="thank-content">
                         <p class="thank-text">Cảm ơn bạn<br>đã xem!</p>
-                        <p class="thank-sub">Hãy liên hệ nếu quan tâm hợp tác</p>
+                        <p class="thank-sub">Hãy <strong class="kw">liên hệ</strong> nếu quan tâm hợp tác</p>
                     </div>
                 </div>
             </div>

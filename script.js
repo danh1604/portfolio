@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextBtn');
     const dotsBox = document.getElementById('dots');
     const progress = document.getElementById('scrollProgress');
+    const navBtns = Array.from(document.querySelectorAll('.topbar [data-target]'));
     const total = slides.length;
 
     const mqMobile = window.matchMedia('(max-width: 900px)');
@@ -60,6 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
             d.classList.toggle('active', n === i);
             if (n === i) d.setAttribute('aria-current', 'true');
             else d.removeAttribute('aria-current');
+        });
+        const id = slides[i].id;
+        navBtns.forEach(b => {
+            const on = b.dataset.target.split(',').indexOf(id) > -1;
+            b.classList.toggle('active', on);
+            if (on) b.setAttribute('aria-current', 'true');
+            else b.removeAttribute('aria-current');
         });
     }
 
@@ -196,7 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Mobile: cuộn dọc bình thường
         if (!isBook()) {
-            slides[t].scrollIntoView({ behavior: instant || mqReduce.matches ? 'auto' : 'smooth', block: 'start' });
+            slides[t].scrollIntoView({
+                behavior: instant || mqReduce.matches ? 'instant' : 'smooth',
+                block: 'start'
+            });
             index = t;
             syncUI(t);
             if (updateHash) setHash(t);
@@ -221,21 +232,28 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', () => goTo(current() - 1));
     nextBtn.addEventListener('click', () => goTo(current() + 1));
 
-    document.querySelectorAll('[data-goto]').forEach(btn => {
-        btn.addEventListener('click', () => goTo(parseInt(btn.dataset.goto, 10)));
+    document.querySelectorAll('[data-goto], [data-target]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.dataset.target) {
+                const first = btn.dataset.target.split(',')[0];
+                const i = slides.findIndex(s => s.id === first);
+                if (i > -1) goTo(i);
+                return;
+            }
+            goTo(parseInt(btn.dataset.goto, 10));
+        });
     });
 
-    /* ============ Nút Tải CV (trang bìa) ============ */
-    const cvBtn = document.getElementById('cvBtn');
-    if (cvBtn) {
-        cvBtn.addEventListener('click', async () => {
+    /* ============ Nút Tải CV (trang bìa + thanh điều hướng) ============ */
+    document.querySelectorAll('.js-cv').forEach(btn => {
+        btn.addEventListener('click', async () => {
             try {
                 const res = await fetch('cv.pdf', { method: 'HEAD' });
                 if (res.ok) { window.open('cv.pdf', '_blank'); return; }
             } catch (_) { /* không có file cv.pdf -> in trang thành PDF */ }
             window.print();
         });
-    }
+    });
 
     /* ============ Chuột / trackpad: mỗi cú cuộn = lật 1 trang ============ */
     let wheelAcc = 0;
@@ -438,4 +456,10 @@ document.addEventListener('DOMContentLoaded', () => {
         syncUI(startIndex);
         if (fromHash > -1) requestAnimationFrame(() => goTo(startIndex, true, false));
     }
+
+    /* Mobile: ảnh tải xong thì chiều cao trang mới đúng -> căn lại trang theo #hash */
+    window.addEventListener('load', () => {
+        if (isBook() || fromHash < 0 || index !== startIndex) return;
+        requestAnimationFrame(() => goTo(startIndex, true, false));
+    });
 });
